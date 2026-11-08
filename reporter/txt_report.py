@@ -14,6 +14,8 @@ class TXTReport:
             self.save_reports_nuclei(result)
         elif scanner=="sentinalx":
             self.save_reports_sentinalx(result)
+        elif scanner=="credential_scanner":
+            self.save_reports_credential_scanner(result)
         else:
             print(f"unsupported scanner type:{scanner}.")
 
@@ -26,7 +28,8 @@ class TXTReport:
         friendly_scan_type = result["scan_type"]
         scan_started = result["scan_started"]
         duration = result["duration"]
-        filename = result.get("filename", f"{target}_scan.txt")
+        os.makedirs("reports", exist_ok=True)
+        filename = result.get("filename", os.path.join("reports",f"{target}_scan.txt"))
 
         if isinstance(ports, list):
             open_ports = ", ".join(
@@ -134,9 +137,12 @@ class TXTReport:
 
     def save_reports_sentinalx(self,result):
         timestamp=datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename=f"sentinalx_report_{timestamp}.txt"
+        os.makedirs("reports",exist_ok=True)
+        filename=f"reports/sentinalx_report_{timestamp}.txt"
         findings=result.get("findings",[])
         summary=result.get("summary",{})
+        analysis=result.get("analysis",{})
+
         with open(filename,"w",encoding="utf-8") as f:
             f.write("="*70+"\n")
             f.write("              SENTINALX SECURITY REPORT\n")
@@ -156,7 +162,32 @@ class TXTReport:
                 f.write(f"Medium        :{summary.get('Medium',0)}\n")
                 f.write(f"Low           :{summary.get('Low',0)}\n")
                 f.write(f"Info          :{summary.get('Info',0)}\n")
-
+            f.write("\n"+ "-"*70+"\n")
+            f.write("                  SECURITY ANALYSIS\n")
+            f.write("-"*70+"\n\n")
+            f.write(f"Overall Risk : {analysis.get('overall_risk','Unknown')}\n")
+            f.write(f"Total findings : {analysis.get('total_findings',0)}\n\n")
+            f.write("Security Insights\n")
+            insights=analysis.get("insights",[])
+            if not insights:
+                f.write("No security insights generated.\n")
+            else:
+                for insight in insights:
+                    f.write(f"[{insight.get('severity','Info')}]"
+                    f"{insight.get('title','Security Insight')}\n")
+                    f.write(f"Target : {insight.get('target','unknown')}\n")
+                    f.write(f"Type   : {insight.get('correlation_type','GENERAL')}\n")
+                    f.write(f"\nRecommendations\n")
+                    recommendations=insight.get('recommendations',[])
+                    if not recommendations:
+                        f.write("No recommendations generated.\n")
+                    else:
+                        for recommendation in recommendations:
+                            f.write(
+                                f"[{recommendation.get('severity','Info')}] "
+                                f"{recommendation.get('action','')}\n")
+                            f.write(f"Target : {recommendation.get('target','Unknown')}\n")
+                    f.write("\n")
             for index,finding in enumerate(findings,start=1):
                 f.write(f"[{index}] {finding.get('title','Unknown')}\n")
                 f.write(f"Severity       :{finding.get('severity','Info')}\n")
@@ -169,8 +200,72 @@ class TXTReport:
                 f.write("\n"+"-"*70+"\n\n")
         print(f"sentinalX report saved: {filename}")
 
-                                
+    def save_reports_credential_scanner(self,result):
+        scanner=result.get("scanner","Credential Scanner")
+        target=result.get("target","Unknown")
+        scan_type=result.get("scan_type","Unknown")
+        findings=result.get("findings",[])
+
+        timestamp=datetime.now().strftime("%Y%m%d_%H%M%S")
+        os.makedirs("reports",exist_ok=True)
+        filename=f"reports/credential_scanner_report_{timestamp}.txt"
+
+        with open(filename,"w",encoding="utf-8") as f:
+            f.write("="*70+"\\n")
+            f.write("              CREDENTIAL SCANNER REPORT\\n")
+            f.write("="*70+"\\n\\n")
+            f.write(f"Scanner   :{scanner}\\n")
+            f.write(f"Target    :{target}\\n")
+            f.write(f"Scan Type :{scan_type}\\n")
+            f.write(f"Duration  :{result.get('duration',0)} seconds\\n")
+            f.write("\\n")
+
+            f.write("-"*70+"\\n")
+            f.write("                    FINDINGS\\n")
+            f.write("-"*70+"\\n\\n")
+
+            if not findings:
+                f.write("No findings detected.\\n")
+            else:
+                for index,finding in enumerate(findings,start=1):
+                    f.write(f"[{index}] {finding.get('title','Unknown')}\\n")
+                    f.write(f"Severity       :{finding.get('severity','Info')}\\n")
+                    f.write(f"Scanner        :{finding.get('scanner','Unknown')}\\n")
+                    f.write(f"Finding_id     :{finding.get('finding_id','Unknown')}\\n")
+                    f.write(f"Target         :{finding.get('target','Unknown')}\\n")
+                    f.write(f"Description    :{finding.get('description','')}\\n")
+                    f.write(f"Evidence       :{finding.get('evidence','')}\\n")
+                    f.write(f"Recommendation :{finding.get('recommendation','')}\\n")
+                    f.write("\\n"+"-"*70+"\\n\\n")
+
+            if scan_type=="john":
+                john_result=result.get("john_result")
+
+                f.write("\\n")
+                f.write("-"*70+"\\n")
+                f.write("                    JOHN THE RIPPER\\n")
+                f.write("-"*70+"\\n\\n")
+
+                if john_result:
+                    f.write(f"Return code : {john_result.get('return_code','Unknown')}\\n")
+                    f.write(f"Cracked     : {john_result.get('cracked',False)}\\n")
+                    f.write(f"Password    : {john_result.get('password','N/A')}\\n")
+                    f.write(f"ERROR       : {john_result.get('stderr','')}\\n")
+
+            if scan_type=="hashcat":
+                hashcat_result=result.get("hashcat_result")
+
+                f.write("\\n")
+                f.write("-"*70+"\\n")
+                f.write("                    HASHCAT\\n")
+                f.write("-"*70+"\\n\\n")
+
+                if hashcat_result:
+                    f.write(f"Return code : {hashcat_result.get('return_code','Unknown')}\\n")
+                    f.write(f"Cracked     : {hashcat_result.get('cracked',False)}\\n")
+                    f.write(f"Password    : {hashcat_result.get('password','N/A')}\\n")
+                    f.write(f"ERROR       : {hashcat_result.get('stderr','')}\\n")
+
+        print(f"Credential Scanner report saved: {filename}")
 
 
-
-        

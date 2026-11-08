@@ -1,6 +1,5 @@
 from core.finding_manager import FindingManager
 
-
 class ResultAggregator:
 
     def aggregate(self, results, target):
@@ -9,6 +8,7 @@ class ResultAggregator:
         scanners = []
         scan_types = []
         durations = []
+        scanner_results=[]
 
         finding_manager = FindingManager()
 
@@ -16,6 +16,12 @@ class ResultAggregator:
 
             if not result:
                 continue
+            scanner_results.append({
+                "scanner": result.get("scanner", "Unknown"),
+                "scan_type": result.get("scan_type", "Unknown"),
+                "duration": result.get("duration", 0),
+                "findings": len(result.get("findings", []))
+            })
 
             scanner = result.get("scanner", "Unknown")
 
@@ -41,14 +47,15 @@ class ResultAggregator:
         combined_findings = finding_manager.get_findings()
 
         return {
-            "scanner": "SentinalX",
-            "scan_type": "Full-security",
-            "target": target,
-            "scanners": scanners,
-            "scan_types": scan_types,
-            "duration": round(sum(durations), 2),
-            "findings": combined_findings
-        }
+    "scanner": "SentinalX",
+    "scan_type": "Full-security",
+    "target": target,
+    "scanners": scanners,
+    "scan_types": scan_types,
+    "scanner_results": scanner_results,
+    "duration": round(sum(durations), 2),
+    "findings": combined_findings
+}
 if __name__ == "__main__":
 
     test_results = [

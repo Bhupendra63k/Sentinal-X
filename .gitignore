@@ -1,4 +1,4 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -7,16 +7,36 @@ __pycache__/
 .venv/
 venv/
 env/
+ENV/
 
-# Logs
-logs/
-*.log
-
-# Generated scan reports
-reports/
-
-# OS / IDE files
-.DS_Store
-Thumbs.db
+# Development environment & IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Logs and runtime artifacts
+logs/
+*.log
+*.pid
+
+# Temporary test outputs & scan debug dumps
+res.txt
+error*.txt
+
+# Scan reports
+reports/
+
+# Sensitive credential inputs (keep directory structure via .gitkeep)
+data/credential_inputs/*
+!data/credential_inputs/.gitkeep
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example

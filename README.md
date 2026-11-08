@@ -1,3 +1,4 @@
+
 🛡️ SentinelX
 
 Modular Security Assessment Platform
@@ -5,6 +6,7 @@ Modular Security Assessment Platform
 Scan → Normalize → Aggregate → Prioritize → Report
 
 A Python CLI framework that brings Nmap, Nikto, and Nuclei into one unified security assessment workflow.
+
 
 
 
@@ -24,13 +26,13 @@ It currently integrates:
 
 🧬 Nuclei — template-based vulnerability detection
 
-SentinelX converts scanner-specific results into a common Finding model, aggregates them, performs exact-key deduplication, normalizes severity, prioritizes findings, and generates TXT/JSON reports.
+SentinelX converts scanner-specific output into a common Finding model, aggregates results, performs exact-key deduplication, normalizes severity, prioritizes findings, and generates TXT/JSON reports.
 
 One target. Multiple scanners. One unified result.
 
 🎯 Why SentinelX?
 
-Security scanners are powerful, but they don't produce identical data.
+Security scanners are powerful, but they do not produce identical data.
 
 Each tool has its own:
 
@@ -54,7 +56,7 @@ SentinelX provides a lightweight orchestration and normalization layer above the
                     Finding Conversion
                            │
                            ▼
-                   Unified Finding Model
+                  Unified Finding Model
                            │
                            ▼
                     Result Aggregation
@@ -384,7 +386,7 @@ Handles menus and formatted CLI output
 
 📋 Finding Model
 
-SentinelX uses a common Finding dataclass so that scanner-specific output can be processed consistently.
+SentinelX uses a common Finding dataclass so scanner-specific output can be processed consistently.
 
 Finding(
     scanner,
@@ -481,8 +483,6 @@ The severity normalizer handles common severity representations and falls back t
 
 Current Scanner Behavior
 
-There is an important implementation limitation:
-
 Scanner
 
 Current Severity Behavior
@@ -529,7 +529,7 @@ Cross-scanner correlation is planned.
 
 📊 Reporting
 
-SentinelX currently supports:
+SentinelX currently supports two report formats.
 
 JSON Reports
 
@@ -554,7 +554,6 @@ PDF and HTML reporting are not currently implemented.
 SentinelX/
 │
 ├── .github/
-│
 ├── backend/
 │
 ├── core/
@@ -607,7 +606,6 @@ SentinelX/
 │   └── test_nmap.py
 │
 ├── tests/
-│
 ├── logs/
 ├── reports/
 │
@@ -716,6 +714,8 @@ Aggregation
 Prioritization
   ↓
 TXT + JSON Reports
+
+The scanners currently execute sequentially.
 
 Scan History
 
