@@ -9,6 +9,10 @@ venv/
 env/
 ENV/
 
+# Databases
+*.db
+*.sqlite3
+
 # Development environment & IDEs
 .vscode/
 .idea/
@@ -25,12 +29,18 @@ logs/
 *.log
 *.pid
 
-# Temporary test outputs & scan debug dumps
+# Temporary test outputs, bundles & scan debug dumps
 res.txt
 error*.txt
+sentinalx_*.zip
+sentinalx_*.txt
 
 # Scan reports
 reports/
+
+# Frontend build & dependencies
+frontend/node_modules/
+frontend/dist/
 
 # Sensitive credential inputs (keep directory structure via .gitkeep)
 data/credential_inputs/*

@@ -1,5 +1,5 @@
 from .parser import NmapParser
-from scanners.network_security.network_analyzer import NetworkSecurityAnalyzer
+from scanners.network.network_analyzer import NetworkSecurityAnalyzer
 from .finding_converter import NmapFindingConverter
 from core.finding_manager import FindingManager
 import subprocess

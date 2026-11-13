@@ -1,5 +1,5 @@
 
-from scanners.network_security.network_analyzer import NetworkSecurityAnalyzer
+from scanners.network.network_analyzer import NetworkSecurityAnalyzer
 
 
 def test_network_security_analysis():
