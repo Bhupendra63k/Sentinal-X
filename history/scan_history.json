@@ -11632,5 +11632,356 @@
         ],
         "status": "COMPLETED",
         "error": null
+    },
+    {
+        "id": 407,
+        "scan_id": "a8cdd8f3-9903-48cb-a2c3-939b855bbeb4",
+        "timestamp": "2026-11-11 07:30:26",
+        "scanner": "hping3",
+        "scan_type": "icmp_ping",
+        "target": "127.0.0.1",
+        "duration": 3.32,
+        "findings": [
+            {
+                "id": "NET-HOST-REACHABLE",
+                "url": "network://127.0.0.1",
+                "title": "Network Path Responsive",
+                "severity": "Info",
+                "description": "Target 127.0.0.1 responded with 0% packet loss across 4 probes. Average round-trip latency: 7.7 ms.",
+                "reference": null
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 408,
+        "scan_id": "30b24f34-beca-47ff-af43-3deec57c51af",
+        "timestamp": "2026-11-11 07:30:27",
+        "scanner": "nmap",
+        "scan_type": "quick",
+        "target": "127.0.0.1",
+        "duration": 0.54,
+        "findings": [
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-1",
+                "title": "Open Port Detected",
+                "severity": "Medium",
+                "description": "Port 22/tcp running ssh is open.",
+                "evidence": "Port: 22, Protocol: tcp, State: open, Service: ssh",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-2",
+                "title": "Open Port Detected",
+                "severity": "Info",
+                "description": "Port 8000/tcp running http-alt is open.",
+                "evidence": "Port: 8000, Protocol: tcp, State: open, Service: http-alt",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-22",
+                "title": "Remote access service exposed: ssh",
+                "severity": "Medium",
+                "description": "Remote access service ssh is exposed on port 22.",
+                "evidence": "22/tcp open ssh",
+                "recommendation": "Verify that remote access is required and restrict access to trusted networks or hosts."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-8000",
+                "title": "Open port detected :8000",
+                "severity": "Info",
+                "description": "Port 8000/tcp is exposed and running http-alt",
+                "evidence": "8000/tcp open http-alt",
+                "recommendation": "Verify that this service is required and restrict access if it is not necessary."
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 409,
+        "scan_id": "4d094a3f-af59-4cb2-877d-0a0c72183cf9",
+        "timestamp": "2026-11-11 07:30:27",
+        "scanner": "nikto",
+        "scan_type": "basic",
+        "target": "http://127.0.0.1",
+        "duration": 4.96,
+        "findings": [],
+        "status": "failed",
+        "error": "Unable to connect to 127.0.0.1:80."
+    },
+    {
+        "id": 410,
+        "scan_id": "6793e574-65a9-455b-b908-9adea7847cf1",
+        "timestamp": "2026-11-11 07:30:28",
+        "scanner": "nuclei",
+        "scan_type": "default",
+        "target": "http://127.0.0.1",
+        "duration": 40.34,
+        "findings": [],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 411,
+        "scan_id": "dfc84492-3764-43a4-9c8c-099cb1e30abf",
+        "timestamp": "2026-11-13 04:29:02",
+        "scanner": "hping3",
+        "scan_type": "icmp_ping",
+        "target": "127.0.0.1",
+        "duration": 3.11,
+        "findings": [
+            {
+                "id": "NET-HOST-REACHABLE",
+                "url": "network://127.0.0.1",
+                "title": "Network Path Responsive",
+                "severity": "Info",
+                "description": "Target 127.0.0.1 responded with 0% packet loss across 4 probes. Average round-trip latency: 1.4 ms.",
+                "reference": null
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 412,
+        "scan_id": "a8b9867b-0de8-483d-86d8-3cd2a06d7101",
+        "timestamp": "2026-11-13 04:29:03",
+        "scanner": "nmap",
+        "scan_type": "quick",
+        "target": "127.0.0.1",
+        "duration": 0.39,
+        "findings": [
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-1",
+                "title": "Open Port Detected",
+                "severity": "Medium",
+                "description": "Port 22/tcp running ssh is open.",
+                "evidence": "Port: 22, Protocol: tcp, State: open, Service: ssh",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-2",
+                "title": "Open Port Detected",
+                "severity": "Info",
+                "description": "Port 8000/tcp running http-alt is open.",
+                "evidence": "Port: 8000, Protocol: tcp, State: open, Service: http-alt",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-22",
+                "title": "Remote access service exposed: ssh",
+                "severity": "Medium",
+                "description": "Remote access service ssh is exposed on port 22.",
+                "evidence": "22/tcp open ssh",
+                "recommendation": "Verify that remote access is required and restrict access to trusted networks or hosts."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-8000",
+                "title": "Open port detected :8000",
+                "severity": "Info",
+                "description": "Port 8000/tcp is exposed and running http-alt",
+                "evidence": "8000/tcp open http-alt",
+                "recommendation": "Verify that this service is required and restrict access if it is not necessary."
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 413,
+        "scan_id": "73a5fb1a-a360-4323-b3f9-352be5371209",
+        "timestamp": "2026-11-13 04:29:03",
+        "scanner": "nikto",
+        "scan_type": "basic",
+        "target": "http://127.0.0.1",
+        "duration": 7.12,
+        "findings": [],
+        "status": "failed",
+        "error": "Unable to connect to 127.0.0.1:80."
+    },
+    {
+        "id": 414,
+        "scan_id": "83875d4a-e6cb-4ba5-b553-5e74c89576ad",
+        "timestamp": "2026-11-13 04:29:04",
+        "scanner": "nuclei",
+        "scan_type": "default",
+        "target": "http://127.0.0.1",
+        "duration": 56.88,
+        "findings": [],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 415,
+        "scan_id": "c0c6ebb1-125b-47fa-9290-41c1cbc1a22f",
+        "timestamp": "2026-11-13 06:45:49",
+        "scanner": "hping3",
+        "scan_type": "icmp_ping",
+        "target": "127.0.0.1",
+        "duration": 3.21,
+        "findings": [
+            {
+                "id": "NET-HOST-REACHABLE",
+                "url": "network://127.0.0.1",
+                "title": "Network Path Responsive",
+                "severity": "Info",
+                "description": "Target 127.0.0.1 responded with 0% packet loss across 4 probes. Average round-trip latency: 2.3 ms.",
+                "reference": null,
+                "scanner": "hping3"
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 416,
+        "scan_id": null,
+        "timestamp": "2026-11-13 06:45:50",
+        "scanner": "nmap",
+        "scan_type": "quick",
+        "target": "127.0.0.1",
+        "duration": 1.0,
+        "findings": [
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-1",
+                "title": "Open Port Detected",
+                "severity": "Medium",
+                "description": "Port 22/tcp running ssh is open.",
+                "evidence": "Port: 22, Protocol: tcp, State: open, Service: ssh",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "Nmap",
+                "target": "localhost",
+                "finding_id": "NMAP-2",
+                "title": "Open Port Detected",
+                "severity": "Info",
+                "description": "Port 8000/tcp running http-alt is open.",
+                "evidence": "Port: 8000, Protocol: tcp, State: open, Service: http-alt",
+                "recommendation": "Verify that this service is required, check its configuration and exposure, and restrict access where appropriate."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-22",
+                "title": "Remote access service exposed: ssh",
+                "severity": "Medium",
+                "description": "Remote access service ssh is exposed on port 22.",
+                "evidence": "22/tcp open ssh",
+                "recommendation": "Verify that remote access is required and restrict access to trusted networks or hosts."
+            },
+            {
+                "scanner": "NetworkSecurity",
+                "target": "localhost",
+                "finding_id": "NETWORK-8000",
+                "title": "Open port detected :8000",
+                "severity": "Info",
+                "description": "Port 8000/tcp is exposed and running http-alt",
+                "evidence": "8000/tcp open http-alt",
+                "recommendation": "Verify that this service is required and restrict access if it is not necessary."
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 417,
+        "scan_id": "8c275f07-707a-455c-9ab8-1fa6ad37bdae",
+        "timestamp": "2026-11-13 06:45:51",
+        "scanner": "nikto",
+        "scan_type": "basic",
+        "target": "http://127.0.0.1",
+        "duration": 3.78,
+        "findings": [],
+        "status": "failed",
+        "error": "Unable to connect to 127.0.0.1:80."
+    },
+    {
+        "id": 418,
+        "scan_id": "6b797dce-e5f3-4d35-9958-85a5a8a0c9f5",
+        "timestamp": "2026-11-13 06:45:51",
+        "scanner": "nuclei",
+        "scan_type": "default",
+        "target": "http://127.0.0.1",
+        "duration": 100.7,
+        "findings": [],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": 419,
+        "scan_id": "21502dac-97d1-4219-9ab9-c8dd8b33e4b3",
+        "timestamp": "2026-11-13 07:18:29",
+        "scanner": "enum4linux",
+        "scan_type": "basic_smb",
+        "target": "127.0.0.1",
+        "duration": 11.69,
+        "findings": [],
+        "status": "COMPLETED",
+        "error": null
+    },
+    {
+        "id": 420,
+        "scan_id": "4cfdb59b-b2c7-4cf3-933f-dbd3606a7f62",
+        "timestamp": "2026-11-13 07:18:46",
+        "scanner": "setoolkit",
+        "scan_type": "harvester_port_check",
+        "target": "127.0.0.1",
+        "duration": 0.5,
+        "findings": [
+            {
+                "finding_id": "SET-HARVESTER-ENV",
+                "scanner": "setoolkit",
+                "url": "http://127.0.0.1:80",
+                "title": "SET Credential Harvester Ready",
+                "severity": "Info",
+                "description": "SET verified at /usr/bin/setoolkit and port 80 is free for authorized cloning simulations.",
+                "recommendation": "Run credential harvesting simulations strictly within authorized lab scope."
+            }
+        ],
+        "status": "COMPLETED",
+        "error": null
+    },
+    {
+        "id": 421,
+        "scan_id": "4b4cd3c9-c807-4377-b662-32ece850977f",
+        "timestamp": "2026-11-13 07:19:18",
+        "scanner": "whatweb",
+        "scan_type": "passive",
+        "target": "http://127.0.0.1:8000",
+        "duration": 13.78,
+        "findings": [
+            {
+                "finding_id": "WEB-TECH-FINGERPRINT",
+                "scanner": "whatweb",
+                "url": "http://127.0.0.1:8000",
+                "title": "Web Stack Fingerprinted (1 technologies)",
+                "severity": "Info",
+                "description": "Detected technologies on http://127.0.0.1:8000: HTTPServer",
+                "recommendation": "Suppress verbose Server and X-Powered-By version headers."
+            }
+        ],
+        "status": "COMPLETED",
+        "error": null
     }
 ]
